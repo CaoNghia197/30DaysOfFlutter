@@ -15,7 +15,7 @@ class ListPage extends StatelessWidget {
           return Card(
             child: ListTile(
               title: Text(item.title),
-              subtitle: Text( item.releaseDate.toString().split(' ').first.toString(),
+              subtitle: Text(item.overview,
                   maxLines: 2, overflow: TextOverflow.ellipsis),
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(4.0),
