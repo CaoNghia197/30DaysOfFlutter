@@ -17,7 +17,7 @@ class DataService {
           .map((post) => Post.fromJson(post as Map<String, dynamic>))
           .toList();
     } else {
-      throw Exception('get list post failed');
+      throw Exception('get posts failed');
     }
   }
 }
