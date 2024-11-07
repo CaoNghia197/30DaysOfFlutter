@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:day16_pokedex_app/model/pokemon_details.dart';
 import 'package:day16_pokedex_app/model/pokemon_page_response.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,12 +19,22 @@ class PokemonRepository {
     final uri = Uri.https(baseUrl, '/api/v2/pokemon', queryParameters);
 
     final response = await client.get(uri);
-    if(response.statusCode ==200){
+    if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
       return PokemonPageResponse.fromJson(json);
-    }else{
+    } else {
       throw Exception();
     }
+  }
 
+  Future<PokemonDetails> getPokemonDetails(int id) async {
+    final uri = Uri.https(baseUrl, '/api/v2/pokemon/$id/');
+    final response = await client.get(uri);
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      return PokemonDetails.fromJson(json as Map<String, dynamic>);
+    } else {
+      throw Exception();
+    }
   }
 }
